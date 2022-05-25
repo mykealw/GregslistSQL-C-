@@ -33,9 +33,14 @@ namespace Davinci.Services
             return _cr.CreateCar(carData);
         }
 
-        internal void Delete(int id)
+        internal void Delete(int id, string userId)
         {
-            throw new NotImplementedException();
+            Car car = GetById(id);
+            if (car.CreatorId != userId)
+            {
+                throw new Exception("you do not own this Car");
+            }
+            _cr.Delete(id);
         }
 
         internal Car EditCar(Car carData)

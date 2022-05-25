@@ -23,7 +23,7 @@ namespace Davinci.Repositories
         SELECT
         c.*,
         act.*
-        FROM car c
+        FROM cars c
         JOIN accounts act On c.creatorId = act.id;
         ";
             return _db.Query<Car, Account, Car>(sql, (car, account) =>
@@ -46,13 +46,19 @@ namespace Davinci.Repositories
             return carData;
         }
 
+        internal void Delete(int id)
+        {
+            string sql = "DELETE FROM cars WHERE id = @id LIMIT 1;";
+            _db.Execute(sql, new { id });
+        }
+
         internal Car GetById(int id)
         {
             string sql = @"
             SELECT 
             c.*,
             act.*
-            FROM car c
+            FROM cars c
             Join accounts act ON c.creatorId = act.Id
             WHERE c.id = @id;";
             return _db.Query<Car, Account, Car>(sql, (car, account) =>

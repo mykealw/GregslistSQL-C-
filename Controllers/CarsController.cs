@@ -71,11 +71,13 @@ namespace Davinci.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<String> Delete(int id)
+        [Authorize]
+        public async Task<ActionResult<String>> Delete(int id)
         {
             try
             {
-                _cs.Delete(id);
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                _cs.Delete(id, userInfo.Id);
                 return Ok("Thats some dangerous racing, deleted");
             }
             catch (Exception e)
@@ -85,6 +87,7 @@ namespace Davinci.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public ActionResult<Car> EditCar(int id, [FromBody] Car carData)
         {
             try
