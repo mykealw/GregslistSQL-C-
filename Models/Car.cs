@@ -9,7 +9,7 @@ namespace Davinci.Models
     public class Car
     {
 
-       public int Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [MinLength(3)]
         [MaxLength(30)]
@@ -31,6 +31,10 @@ namespace Davinci.Models
         [Required]
         [MinLength(3)]
         [MaxLength(60)]
-        public string ImgUrl { get; set; }   
+        public string ImgUrl { get; set; }
+        [Required]
+        [MinLength(3)]
+        [MaxLength(60)]
+        public string CreatorId { get; set; }
     }
 }

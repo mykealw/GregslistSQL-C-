@@ -13,12 +13,22 @@ namespace Davinci.Services
             throw new NotImplementedException();
         }
 
-        internal Car GetById(string id)
+        internal Car GetById(int id)
         {
             throw new NotImplementedException();
         }
 
         internal Car CreateCar(Car carData)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal void Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Car EditCar(Car carData)
         {
             throw new NotImplementedException();
         }

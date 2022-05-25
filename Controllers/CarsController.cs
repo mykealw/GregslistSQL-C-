@@ -33,13 +33,9 @@ namespace Davinci.Controllers
             }
         }
 
-        private ActionResult<List<Car>> BadRequest(string message)
-        {
-            throw new NotImplementedException();
-        }
 
         [HttpGet("{id}")]
-        public ActionResult<Car> GetById(string id)
+        public ActionResult<Car> GetById(int id)
         {
             try
             {
@@ -69,7 +65,7 @@ namespace Davinci.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<String> Delete(string id)
+        public ActionResult<String> Delete(int id)
         {
             try
             {
@@ -83,7 +79,7 @@ namespace Davinci.Controllers
         }
 
         [HttpPut("{id}")]
-        public ActionResult<Car> EditCar(string id, [FromBody] Car carData)
+        public ActionResult<Car> EditCar(int id, [FromBody] Car carData)
         {
             try
             {

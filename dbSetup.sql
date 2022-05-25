@@ -21,7 +21,21 @@ CREATE TABLE IF NOT EXISTS art(
 
 )default charset utf8;
 
+CREATE TABLE IF NOT EXISTS cars(
+id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+model VARCHAR(255) NOT NULL,
+make VARCHAR(255) NOT NULL,
+year INT NOT NULL,
+color VARCHAR(255) NOT NULL,
+price INT NOT NULL,
+imgUrl VARCHAR(255) NOT NULL,
+creatorId VARCHAR(255) NOT NULL,
 
+FOREIGN KEY(creatorId) 
+   REFERENCES accounts(id)
+    ON DELETE CASCADE
+
+)default charset utf8;
 
 
 /* post */
