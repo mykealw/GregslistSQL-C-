@@ -45,7 +45,20 @@ namespace Davinci.Services
 
         internal Car EditCar(Car carData)
         {
-            throw new NotImplementedException();
+
+            Car original = GetById(carData.Id);
+            if (original.CreatorId != carData.CreatorId)
+            {
+                throw new Exception("you dont own this");
+            }
+            original.Color = carData.Color ?? original.Color;
+            original.Model = carData.Model ?? original.Model;
+            original.Make = carData.Make ?? original.Make;
+            original.ImgUrl = carData.ImgUrl ?? original.ImgUrl;
+
+            _cr.Edit(original);
+
+            return GetById(original.Id);
         }
     }
 }

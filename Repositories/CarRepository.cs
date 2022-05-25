@@ -67,5 +67,19 @@ namespace Davinci.Repositories
                 return car;
             }, new { id }).FirstOrDefault();
         }
+
+        internal void Edit(Car original)
+        {
+
+            string sql = @"
+                UPDATE cars SET 
+                color = @Color,
+                model = @Model,
+                make = @Make,
+                imgUrl = @ImgUrl
+                WHERE id = @Id;
+                ";
+            _db.Execute(sql, original);
+        }
     }
 }

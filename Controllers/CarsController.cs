@@ -88,10 +88,12 @@ namespace Davinci.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public ActionResult<Car> EditCar(int id, [FromBody] Car carData)
+        public async Task<ActionResult<Car>> EditCar(int id, [FromBody] Car carData)
         {
             try
             {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                carData.CreatorId = userInfo.Id;
                 carData.Id = id;
                 Car updated = _cs.EditCar(carData);
                 return Ok(updated);
