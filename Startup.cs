@@ -43,7 +43,7 @@ namespace Davinci
             services.AddScoped<AccountsRepository>();
             services.AddScoped<AccountService>();
 
-            services.AddTransient<CarsRepositories>();
+            services.AddTransient<CarRepository>();
             services.AddTransient<CarsService>();
         }
 

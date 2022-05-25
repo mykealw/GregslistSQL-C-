@@ -28,13 +28,12 @@ namespace Davinci.Models
         [Required]
         [Range(1, int.MaxValue)]
         public int Price { get; set; }
-        [Required]
-        [MinLength(3)]
-        [MaxLength(60)]
+        [Url]
         public string ImgUrl { get; set; }
         [Required]
         [MinLength(3)]
         [MaxLength(60)]
         public string CreatorId { get; set; }
+        public Account Creator { get; set; }
     }
 }
