@@ -33,6 +33,19 @@ namespace Davinci.Repositories
             }).ToList();
         }
 
+        internal Car CreateCar(Car carData)
+        {
+            string sql = @"
+            INSERT INTO cars
+            (title, imgUrl, createId)
+            VALUES
+            (@Model, @Make, @Year, @Color, @Price, @ImgUrl, @CreatorId, @Creator);
+            SELECT LAST_INSERT_ID();
+            ";
+            carData.Id = _db.ExecuteScalar<int>(sql, carData);
+            return carData;
+        }
+
         internal Car GetById(int id)
         {
             string sql = @"

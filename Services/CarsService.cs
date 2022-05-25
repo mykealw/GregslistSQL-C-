@@ -30,7 +30,7 @@ namespace Davinci.Services
 
         internal Car CreateCar(Car carData)
         {
-            throw new NotImplementedException();
+            return _cr.CreateCar(carData);
         }
 
         internal void Delete(int id)

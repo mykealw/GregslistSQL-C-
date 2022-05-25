@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CodeWorks.Auth0Provider;
 using Davinci.Models;
 using Davinci.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Davinci.Controllers
@@ -50,11 +52,15 @@ namespace Davinci.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Car> CreateCar([FromBody] Car carData)
+        [Authorize]
+        public async Task<ActionResult<Car>> CreateCar([FromBody] Car carData)
         {
             try
             {
+                Account userInfo = await HttpContext.GetUserInfoAsync<Account>();
+                carData.CreatorId = userInfo.Id;
                 Car newCar = _cs.CreateCar(carData);
+                carData.Creator = userInfo;
                 return Ok(newCar);
             }
             catch (Exception e)
