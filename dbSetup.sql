@@ -22,6 +22,8 @@ CREATE TABLE IF NOT EXISTS art(
 )default charset utf8;
 
 
+
+
 /* post */
 INSERT INTO art
 (title, imgUrl, creatorId)

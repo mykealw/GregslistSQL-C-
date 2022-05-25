@@ -1,4 +1,4 @@
- using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -39,9 +39,12 @@ namespace Davinci
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Davinci", Version = "v1" });
             });
             services.AddScoped<IDbConnection>(x => CreateDbConnection());
-            
+
             services.AddScoped<AccountsRepository>();
             services.AddScoped<AccountService>();
+
+            services.AddTransient<CarsRepositories>();
+            services.AddTransient<CarsService>();
         }
 
         private void ConfigureCors(IServiceCollection services)
@@ -94,10 +97,10 @@ namespace Davinci
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
 
             app.UseAuthentication();
